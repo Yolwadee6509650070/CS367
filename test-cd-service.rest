@@ -20,4 +20,3 @@ DELETE http://localhost:8080/cds/1
 
 ### 📌 ดู CD ที่ยังไม่ถูกยืม
 GET http://localhost:8080/cds/available
-
