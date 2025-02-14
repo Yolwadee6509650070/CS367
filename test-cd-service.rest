@@ -1,0 +1,23 @@
+### 📌 ดู CD ทั้งหมด
+GET http://localhost:8080/cds
+
+### 📌 เพิ่ม CD ใหม่
+POST http://localhost:8080/cds
+Content-Type: application/json
+
+{
+    "title": "The Matrix"
+}
+
+### 📌 ยืม CD (ป้องกันการยืมซ้ำ)
+PUT http://localhost:8080/cds/1/borrow?borrower=John
+
+### 📌 คืน CD (ป้องกันการคืนซ้ำ)
+PUT http://localhost:8080/cds/1/return
+
+### 📌 ลบ CD (ป้องกันการลบ CD ที่ถูกยืมอยู่)
+DELETE http://localhost:8080/cds/1
+
+### 📌 ดู CD ที่ยังไม่ถูกยืม
+GET http://localhost:8080/cds/available
+

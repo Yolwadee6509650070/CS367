@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CDLoanApplication",
+            "request": "launch",
+            "mainClass": "dev.natthida.cdloan.CDLoanApplication",
+            "projectName": "handytools"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-HandytoolsApplication<handytools>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "dev.natthida.handytools.HandytoolsApplication",
+            "projectName": "handytools",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

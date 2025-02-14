@@ -1,0 +1,8 @@
+/mnt/c/Users/Focus/CS367/src/main/java/dev/natthida/cdloan/CDLoanApplication.java
+/mnt/c/Users/Focus/CS367/src/main/java/dev/natthida/cdloan/config/LoadDatabase.java
+/mnt/c/Users/Focus/CS367/src/main/java/dev/natthida/cdloan/controller/CDController.java
+/mnt/c/Users/Focus/CS367/src/main/java/dev/natthida/cdloan/controller/StorageController.java
+/mnt/c/Users/Focus/CS367/src/main/java/dev/natthida/cdloan/model/CD.java
+/mnt/c/Users/Focus/CS367/src/main/java/dev/natthida/cdloan/model/Storage.java
+/mnt/c/Users/Focus/CS367/src/main/java/dev/natthida/cdloan/repository/CDRepository.java
+/mnt/c/Users/Focus/CS367/src/main/java/dev/natthida/cdloan/repository/StorageRepository.java
