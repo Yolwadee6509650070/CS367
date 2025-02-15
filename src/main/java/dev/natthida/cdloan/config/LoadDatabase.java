@@ -21,18 +21,24 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(CDRepository cdRepository, LocationRepository locationRepository) {
         return args -> {
             if (locationRepository.count() == 0) { // ตรวจสอบก่อนโหลด Location
-                Location branchA = locationRepository.save(new Location("Branch A"));
-                Location branchB = locationRepository.save(new Location("Branch B"));
-                Location branchC = locationRepository.save(new Location("Branch C"));
+                Location branchA = locationRepository.save(new Location("Downtown"));
+                Location branchB = locationRepository.save(new Location("Uptown"));
+                Location branchC = locationRepository.save(new Location("Suburban"));
 
                 log.info("Loading " + branchA);
                 log.info("Loading " + branchB);
                 log.info("Loading " + branchC);
 
                 if (cdRepository.count() == 0) { // ตรวจสอบก่อนโหลด CD
-                    log.info("Loading " + cdRepository.save(new CD("Inception", branchA)));
-                    log.info("Loading " + cdRepository.save(new CD("Interstellar", branchB)));
-                    log.info("Loading " + cdRepository.save(new CD("The Dark Knight", branchC)));
+                    log.info("Loading " + cdRepository.save(new CD("Inception", "Hans Zimmer", branchA)));
+                    log.info("Loading " + cdRepository.save(new CD("Interstellar", "Hans Zimmer", branchB)));
+                    log.info("Loading " + cdRepository.save(new CD("The Dark Knight", "Hans Zimmer", branchC)));
+                    log.info("Loading " + cdRepository.save(new CD("The Beatles - Abbey Road", "The Beatles", branchA)));
+                    log.info("Loading " + cdRepository.save(new CD("Pink Floyd - The Wall", "Pink Floyd", branchA)));
+                    log.info("Loading " + cdRepository.save(new CD("Led Zeppelin - IV", "Led Zeppelin", branchB)));
+                    log.info("Loading " + cdRepository.save(new CD("Abbey Road", "The Beatles", branchC)));
+                    log.info("Loading " + cdRepository.save(new CD("Back in Black", "AC/DC", branchB)));
+                    log.info("Loading " + cdRepository.save(new CD("The Wall", "Pink Floyd", branchA)));
                 } else {
                     log.info("CDs already exist, skipping data initialization.");
                 }

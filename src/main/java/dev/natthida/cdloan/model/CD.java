@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
-
 @Entity
 public class CD {
     @Id
@@ -13,6 +12,9 @@ public class CD {
 
     @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false)
+    private String artist;  // เพิ่ม artist เพื่อเก็บข้อมูลของศิลปิน
 
     // สถานะการยืม
     private Boolean borrowed = false;
@@ -34,8 +36,21 @@ public class CD {
 
     public CD() {}
 
+    // คอนสตรัคเตอร์เดิมที่รับ title และ location
     public CD(String title, Location location) {
         this.title = title;
+        this.location = location;
+        this.borrowed = false;
+        this.borrower = null;
+        this.borrowedLocation = null;
+        this.borrowDate = null;
+        this.returnDate = null;
+    }
+
+    // คอนสตรัคเตอร์ใหม่ที่รับ title, artist, location
+    public CD(String title, String artist, Location location) {
+        this.title = title;
+        this.artist = artist; // กำหนด artist
         this.location = location;
         this.borrowed = false;
         this.borrower = null;
@@ -59,6 +74,14 @@ public class CD {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 
     public Boolean getBorrowed() {

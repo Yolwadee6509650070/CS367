@@ -114,7 +114,7 @@ public class CDController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("ไม่สามารถลบ CD ที่กำลังถูกยืมอยู่!");
         }
         repository.deleteById(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok("ลบ CD '" + cd.getTitle() + "' สำเร็จ");
     }
 
     // ✅ API ดูเฉพาะ CD ที่ยังไม่ถูกยืม

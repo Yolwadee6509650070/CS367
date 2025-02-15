@@ -1,17 +1,17 @@
-### ✅ 1. เพิ่มสาขาใหม่ (Downtown)
+### ✅ 1. เพิ่มสาขาใหม่ (Minttown)
 POST http://localhost:8080/locations
 Content-Type: application/json
 
 {
-  "branch": "Downtown"
+  "branch": "Minttown"
 }
 
-### ✅ 2. เพิ่มสาขาใหม่ (Uptown)
+### ✅ 2. เพิ่มสาขาใหม่ (Maddytown)
 POST http://localhost:8080/locations
 Content-Type: application/json
 
 {
-  "branch": "Uptown"
+  "branch": "Maddytown"
 }
 
 ### ✅ 3. ดูรายชื่อสาขาทั้งหมด
@@ -23,7 +23,7 @@ POST http://localhost:8080/cds?locationId=1
 Content-Type: application/json
 
 {
-  "title": "The Beatles - Abbey Road",
+  "title": "The Beatles - Abbey Road 2",
   "artist": "The Beatles"
 }
 
@@ -31,11 +31,11 @@ Content-Type: application/json
 GET http://localhost:8080/cds
 Accept: application/json
 
-### ✅ 6. ดู CD ตาม ID (เช็คว่ายังไม่มีผู้ยืม)
+### ✅ 6. ดู CD ตาม ID = 1 CD เรื่อง Inception (เช็คว่ายังไม่มีผู้ยืม)
 GET http://localhost:8080/cds/1
 Accept: application/json
 
-### ✅ 7. ยืม CD โดย John Doe จากสาขา Downtown ไปใช้ที่ Uptown
+### ✅ 7. ยืม CD โดย John Doe จากสาขา Downtown ไปใช้ที่ Uptown (สมมติว่า ID = 1)
 PUT http://localhost:8080/cds/1/borrow
 Content-Type: application/json
 
@@ -53,7 +53,7 @@ PUT http://localhost:8080/cds/1/return
 Content-Type: application/json
 
 {
-  "returnLocationId": 1
+  "returnLocationId": 1  
 }
 
 ### ✅ 10. ตรวจสอบข้อมูล CD หลังคืน (เช็ค borrowed = false, returnDate ถูกต้อง)
@@ -68,4 +68,4 @@ Accept: application/json
 DELETE http://localhost:8080/cds/1
 
 ### ✅ 13. ลบสาขา (หากไม่มี CD ค้างอยู่)
-DELETE http://localhost:8080/locations/1
+DELETE http://localhost:8080/locations/2
