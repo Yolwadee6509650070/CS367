@@ -1,30 +1,47 @@
 package dev.natthida.cdloan.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+
 
 @Entity
 public class CD {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String title;
+
+    // สถานะการยืม
     private Boolean borrowed = false;
+    // ชื่อผู้ยืม
     private String borrower;
 
-    @ManyToOne  // ความสัมพันธ์กับ Storage (หลาย CD สามารถอยู่ใน Storage เดียวกัน)
-    private Storage storage;
+    // สาขาที่เก็บ CD (ใช้เมื่อซื้อหรือเมื่อคืน)
+    @ManyToOne
+    @JsonIgnoreProperties("cds")
+    private Location location;
+
+    // สาขาที่ยืมไป (สำหรับบันทึกข้อมูลการยืม)
+    @ManyToOne
+    @JsonIgnoreProperties("cds")
+    private Location borrowedLocation;
+
+    private LocalDate borrowDate;
+    private LocalDate returnDate;
 
     public CD() {}
 
-    // Constructor ที่รับ title และ Storage
-    public CD(String title, Storage storage) {
+    public CD(String title, Location location) {
         this.title = title;
+        this.location = location;
         this.borrowed = false;
         this.borrower = null;
-        this.storage = storage;
+        this.borrowedLocation = null;
+        this.borrowDate = null;
+        this.returnDate = null;
     }
 
     // Getters and Setters
@@ -60,11 +77,35 @@ public class CD {
         this.borrower = borrower;
     }
 
-    public Storage getStorage() {
-        return storage;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setStorage(Storage storage) {
-        this.storage = storage;
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Location getBorrowedLocation() {
+        return borrowedLocation;
+    }
+
+    public void setBorrowedLocation(Location borrowedLocation) {
+        this.borrowedLocation = borrowedLocation;
+    }
+
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
     }
 }

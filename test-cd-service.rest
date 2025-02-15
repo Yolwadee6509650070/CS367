@@ -1,22 +1,71 @@
-### 📌 ดู CD ทั้งหมด
-GET http://localhost:8080/cds
-
-### 📌 เพิ่ม CD ใหม่
-POST http://localhost:8080/cds
+### ✅ 1. เพิ่มสาขาใหม่ (Downtown)
+POST http://localhost:8080/locations
 Content-Type: application/json
 
 {
-    "title": "The Matrix"
+  "branch": "Downtown"
 }
 
-### 📌 ยืม CD (ป้องกันการยืมซ้ำ)
-PUT http://localhost:8080/cds/1/borrow?borrower=John
+### ✅ 2. เพิ่มสาขาใหม่ (Uptown)
+POST http://localhost:8080/locations
+Content-Type: application/json
 
-### 📌 คืน CD (ป้องกันการคืนซ้ำ)
+{
+  "branch": "Uptown"
+}
+
+### ✅ 3. ดูรายชื่อสาขาทั้งหมด
+GET http://localhost:8080/locations
+Accept: application/json
+
+### ✅ 4. เพิ่ม CD ใหม่ที่สาขา Downtown (สมมติว่า ID = 1)
+POST http://localhost:8080/cds?locationId=1
+Content-Type: application/json
+
+{
+  "title": "The Beatles - Abbey Road",
+  "artist": "The Beatles"
+}
+
+### ✅ 5. ดู CD ทั้งหมด
+GET http://localhost:8080/cds
+Accept: application/json
+
+### ✅ 6. ดู CD ตาม ID (เช็คว่ายังไม่มีผู้ยืม)
+GET http://localhost:8080/cds/1
+Accept: application/json
+
+### ✅ 7. ยืม CD โดย John Doe จากสาขา Downtown ไปใช้ที่ Uptown
+PUT http://localhost:8080/cds/1/borrow
+Content-Type: application/json
+
+{
+  "borrower": "John Doe",
+  "borrowedLocationId": 2
+}
+
+### ✅ 8. ตรวจสอบข้อมูล CD (เช็ค borrowed = true, borrower = "John Doe", borrowDate ถูกต้อง)
+GET http://localhost:8080/cds/1
+Accept: application/json
+
+### ✅ 9. คืน CD กลับไปที่สาขา Downtown
 PUT http://localhost:8080/cds/1/return
+Content-Type: application/json
 
-### 📌 ลบ CD (ป้องกันการลบ CD ที่ถูกยืมอยู่)
+{
+  "returnLocationId": 1
+}
+
+### ✅ 10. ตรวจสอบข้อมูล CD หลังคืน (เช็ค borrowed = false, returnDate ถูกต้อง)
+GET http://localhost:8080/cds/1
+Accept: application/json
+
+### ✅ 11. ดูเฉพาะ CD ที่ยังไม่ถูกยืม
+GET http://localhost:8080/cds/available
+Accept: application/json
+
+### ✅ 12. ลบ CD (ต้องยังไม่ถูกยืม)
 DELETE http://localhost:8080/cds/1
 
-### 📌 ดู CD ที่ยังไม่ถูกยืม
-GET http://localhost:8080/cds/available
+### ✅ 13. ลบสาขา (หากไม่มี CD ค้างอยู่)
+DELETE http://localhost:8080/locations/1
